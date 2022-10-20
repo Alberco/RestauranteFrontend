@@ -1,0 +1,79 @@
+        {
+          data.results?.map(item => (
+            <div key={item.id}>
+              <p className="text-2xl text-white">{item.name_product}</p>
+              <p className="text-2xl text-white">{item.category}</p>
+              <p className="text-2xl text-white">{item.price}</p>
+            </div>
+          ))
+        }
+
+          const URL = 'http://localhost:8000/product/'
+
+  const consultaBackend = () => {
+    fetch(URL)
+      .then(res => res.json())
+      .then(data => setData(data))
+      .catch(error => console.log(error))
+  }
+
+  useEffect(()=> {
+    consultaBackend()
+  },[])
+
+
+
+  import { render } from "preact";
+
+function MyButton(props) {
+  return <button class="my-button">{props.text}</button>
+}
+
+function MediaPlayer(props) {
+	return (
+		<>
+	{props.playind ? (
+		<MyButton text="Stop" />	
+	):(
+		<MyButton text="Play" />	
+	)
+	}
+		</>
+	)
+}
+
+function App() {
+  const clicked = () => {
+    console.log('Hello!')
+  }
+
+  return (
+    <div>
+      <p class="count">Count:</p>
+      <MediaPlayer playind={true}/>
+    </div>
+  )
+}
+
+render(<App />, document.getElementById("app"));
+
+    const guardarUsuario = () => {
+        axios.post("http://localhost:8000/users/",{
+                "name_client": localStorage.getItem("name")
+        })
+        .then(res => console.log(res))
+        .catch(error => console.log(error))
+    }
+
+onClick={() => comprarProduct(item.id)} >
+
+    const comprarProduct = (id) => {
+      axios.post("http://localhost:8000/food_menu/",{
+          "description_food_menu": "comida",
+          "count": 2,
+          "product": id,
+          "client": localStorage.getItem("id_user"),
+          "tablefood": localStorage.getItem("id_table")
+      })
+
+    }
