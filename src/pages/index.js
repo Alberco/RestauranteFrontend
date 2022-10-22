@@ -2,28 +2,34 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
-
+import Swal from "sweetalert2"
 
 export default function Home() {
 
   const router = useRouter()
   const  [newName,setNewName] = useState("")
 
-
   const guardarUsuario = () => {
     axios.post("http://localhost:8000/users/",{
             "name_client": localStorage.getItem("name")
     })
-    .then(res => localStorage.setItem("id_user",res.data.id))
-    .catch(error => console.log(error))
-}
+    .then(res => {
+      localStorage.setItem("id_user",res.data.id)
+      router.push("/home")
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error de Server',
+      })
+    })}
   
   const hanlerSubmit = (e) => {
       e.preventDefault()
       localStorage.setItem("name",newName)
       guardarUsuario()
-      router.push("/home")
-  }
+}
 
   return (
     <div>
@@ -58,5 +64,4 @@ export default function Home() {
       </main>
 
     </div>
-  )
-}
+)}
