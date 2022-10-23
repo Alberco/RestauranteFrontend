@@ -1,6 +1,7 @@
 import { useEffect,useState } from "react"
 import { useRouter } from "next/router"
 import Swal from "sweetalert2"
+import axios from "axios"
 
 function Products() {
 
@@ -56,6 +57,36 @@ function Products() {
       localStorage.setItem("shopping",JSON.stringify(newShopping))
       router.push("/home/pedido")
     }
+
+    let data = JSON.parse(localStorage.getItem("shopping"));
+
+    const finalizarPedido = () => {
+      data.map( x => {
+        axios.post("https://drf-retaurante.onrender.com/food_menu/",{
+                "client": x.client,
+                "tablefood": x.tablefood,
+                "product": x.product,
+                "count":x.count,
+                "description_food_menu": x.description_food_menu,
+            
+        })
+        .then(res => {
+            Swal.fire({
+                icon:"success",
+                title:"Pedido Completado",
+                text:"Gracias por comprar en el restaurante"
+            })
+            router.push("/")
+        } )
+        .catch(error => {
+            Swal.fire({
+                icon:"error",
+                title:"Pedido Erroneo",
+            })
+        })
+    })
+
+    }
     useEffect(()=> {
       consultaBackend()
     },[])
@@ -83,8 +114,25 @@ function Products() {
             }
           </div>
           <div className="flex items-start justify-center my-10">
-            <buttom buttom onClick={irShop} className="text-2xl text-white font-bold  border-2 px-2 py-3 hover:bg-blue-500 transition-colors rounded-lg cursor-pointer">Ver pedido</buttom>
+            <buttom buttom onClick={irShop} className="text-2xl text-white font-bold  border-2 px-2 py-3 hover:bg-blue-500 transition-colors rounded-lg cursor-pointer">Generar pedido</buttom>
           </div>
+          <div className="bg-blue-800 min-h-screen w-full">
+                <h2 className="text-3xl text-center py-4 text-white font-bold">Carrito de compras</h2>
+                    <section className="grid grid-cols-1 lg:grid-cols-5 gap-4 mx-14">
+                    {
+                        data?.map((item,index) => (
+                            <div key={index + "dsd123"} className="bg-blue-700 border-2 rounded-lg p-8 text-xl text-white text-center">
+                                <p>Product id : {item.product}</p>
+                                <p>Cantidad : {item.count}</p>
+                                <p>descripcion : {item.description_food_menu}</p>
+                            </div>
+                        ))
+                    }
+                    </section>
+                <div className="flex justify-center">
+                    <button onClick={finalizarPedido} className="mx-auto text-white text-2xl border-2 mt-10 p-3">Finalizar Pedido</button>
+                </div>
+            </div>
         </div>
      );
 }
