@@ -4,12 +4,12 @@ import Swal from "sweetalert2";
 
 function Pedido() {
     const router = useRouter()
-    const data = JSON.parse(localStorage.getItem('shopping'));
+    
+    var data = JSON.parse(localStorage.getItem("shopping"));
 
     const generarCompra = () => {
         data.map( x => {
             axios.post("https://drf-retaurante.onrender.com/food_menu/",{
-                
                     "client": x.client,
                     "tablefood": x.tablefood,
                     "product": x.product,
