@@ -54,7 +54,6 @@ function Products() {
 
     const irShop = () => {
       localStorage.setItem("shopping",JSON.stringify(newShopping))
-      router.push("/home/product/shop")
     }
     useEffect(()=> {
       consultaBackend()
