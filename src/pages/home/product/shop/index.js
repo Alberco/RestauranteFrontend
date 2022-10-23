@@ -1,6 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 function Shop() {
 
@@ -43,7 +44,7 @@ function Shop() {
                     {
                         dataPage.map((item,index) => (
                             <div key={index + "dsd123"} className="bg-blue-700 border-2 rounded-lg p-8 text-xl text-white text-center">
-                                <img src={item.description_food_menu} className="mb-4"/>
+                                <Image src={item.description_food_menu} className="mb-4"/>
                                 <p>Product id : {item.product}</p>
                                 <p>Cantidad : {item.count}</p>
                             </div>
