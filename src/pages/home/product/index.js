@@ -109,7 +109,7 @@ function Products() {
             }
           </div>
           <div className="flex items-start justify-center my-10">
-            <buttom buttom onClick={irShop} className="text-2xl text-white font-bold  border-2 px-2 py-3 hover:bg-blue-500 transition-colors rounded-lg cursor-pointer">Generar pedido</buttom>
+            <h2>Lista de Pedido</h2>
           </div>
           <div className="bg-blue-800 min-h-screen w-full">
                 <h2 className="text-3xl text-center py-4 text-white font-bold">Carrito de compras</h2>
