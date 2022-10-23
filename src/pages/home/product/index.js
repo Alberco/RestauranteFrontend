@@ -28,7 +28,7 @@ function Products() {
     const [newData,setNewData] = useState(baseData)
     const [newShopping,setNewShopping] = useState([])
     const [shoppingCount,setShoppingCount] = useState("0")
-    const [shoppingPage,setShoppingPage] = useState([])
+
 
 
     const consultaBackend = () => {
@@ -38,7 +38,7 @@ function Products() {
         .catch(error => console.log(error))
     }
 
-    const addNewShopping = (id,name) => {
+    const addNewShopping = (id) => {
       setNewShopping((old)=>[...old,{
         "client": localStorage.getItem("id_user"),
         "tablefood": localStorage.getItem("id_table"),
@@ -46,20 +46,14 @@ function Products() {
         "count":shoppingCount,
         "description_food_menu": "comida",
       }])
-      setShoppingPage((old)=>[...old,{
-        "product": name,
-        "count":shoppingCount,
-        "description_food_menu": "https://www.comedera.com/wp-content/uploads/2022/05/aereopuero-receta-peruana.jpg"
-      }])
       Swal.fire({
         icon:"success",
         title: "Producto Agregado"
-      })
+    })
     } 
 
     const irShop = () => {
       localStorage.setItem("shopping",JSON.stringify(newShopping))
-      localStorage.setItem("shoppingPage",JSON.stringify(shoppingPage))
       router.push("/home/product/shop")
     }
     useEffect(()=> {
@@ -81,7 +75,7 @@ function Products() {
                   </div>
                   <button 
                     className="border-2 rounded-md py-2 px-4 text-white bg-blue-600 hover:bg-blue-500 duration-200 my-3"
-                    onClick={() => addNewShopping(item.id,item.name_product)} >
+                    onClick={() => addNewShopping(item.id)} >
                     Añadir al pedido
                   </button>
                 </div>
