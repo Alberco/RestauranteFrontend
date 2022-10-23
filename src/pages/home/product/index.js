@@ -9,6 +9,8 @@ function Products() {
 
     const router = useRouter()
 
+    localStorage.setItem("shopping","gaaaaaa")
+    
     const baseData = {
         "count": null,
         "next": null,
@@ -57,6 +59,8 @@ function Products() {
       localStorage.setItem("shopping",JSON.stringify(newShopping))
       router.push("/home/pedido")
     }
+
+
 
     let data = JSON.parse(localStorage.getItem("shopping"));
 
