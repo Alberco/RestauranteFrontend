@@ -3,36 +3,10 @@ import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
 function Pedido() {
-    const router = useRouter()
     
-    var data = JSON.parse(localStorage.getItem("shopping"));
+    const router = useRouter()
 
-    const generarCompra = () => {
-        data.map( x => {
-            axios.post("https://drf-retaurante.onrender.com/food_menu/",{
-                    "client": x.client,
-                    "tablefood": x.tablefood,
-                    "product": x.product,
-                    "count":x.count,
-                    "description_food_menu": x.description_food_menu,
-                
-            })
-            .then(res => {
-                Swal.fire({
-                    icon:"success",
-                    title:"Pedido Completado",
-                    text:"Gracias por comprar en el restaurante"
-                })
-                router.push("/")
-            } )
-            .catch(error => {
-                Swal.fire({
-                    icon:"error",
-                    title:"Pedido Erroneo",
-                })
-            })
-        })
-    }
+    var data = JSON.parse(localStorage.getItem("shopping"));
 
 
     return (
@@ -50,7 +24,6 @@ function Pedido() {
                     }
                     </section>
                 <div className="flex justify-center">
-                    <button onClick={generarCompra} className="mx-auto text-white text-2xl border-2 mt-10 p-3">Generar Pedido</button>
                 </div>
             </div>
       );
