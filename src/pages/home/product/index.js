@@ -54,17 +54,9 @@ function Products() {
     })
     } 
 
-    const irShop = () => {
-      localStorage.setItem("sho",JSON.stringify(newShopping))
-      router.push("/home/pedido")
-    }
-
-
-
-    let data = JSON.parse(localStorage.getItem("sho"));
 
     const finalizarPedido = () => {
-      data.map( x => {
+      newShopping.map( x => {
         axios.post("https://drf-retaurante.onrender.com/food_menu/",{
                 "client": x.client,
                 "tablefood": x.tablefood,
@@ -123,7 +115,7 @@ function Products() {
                 <h2 className="text-3xl text-center py-4 text-white font-bold">Carrito de compras</h2>
                     <section className="grid grid-cols-1 lg:grid-cols-5 gap-4 mx-14">
                     {
-                        data?.map((item,index) => (
+                        newShopping?.map((item,index) => (
                             <div key={index + "dsd123"} className="bg-blue-700 border-2 rounded-lg p-8 text-xl text-white text-center">
                                 <p>Product id : {item.product}</p>
                                 <p>Cantidad : {item.count}</p>
