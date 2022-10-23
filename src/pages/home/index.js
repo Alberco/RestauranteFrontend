@@ -13,7 +13,7 @@ function Home() {
 
 
     const dataTable = () => {
-        axios.get("http://localhost:8000/table_food/")
+        axios.get("https://drf-retaurante.onrender.com/table_food/")
             .then(res => {
                 setNewData(res.data.results)
             })

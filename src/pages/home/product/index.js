@@ -4,7 +4,7 @@ import Swal from "sweetalert2"
 
 function Products() {
 
-    const URL = 'http://localhost:8000/product/'
+    const URL = 'https://drf-retaurante.onrender.com/product/'
 
     const router = useRouter()
 

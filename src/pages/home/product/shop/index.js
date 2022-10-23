@@ -1,14 +1,15 @@
+import { useRouter } from "next/router";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useRouter } from "next/router";
 
 function Shop() {
+    const router = useRouter()
+    const data = JSON.parse(localStorage.getItem('shopping'));
 
-    let data = JSON.parse(localStorage.getItem("shopping"))
-    const  router = useRouter()
+
     const generarCompra = () => {
         data.map( x => {
-            axios.post("http://localhost:8000/food_menu/",{
+            axios.post("https://drf-retaurante.onrender.com/food_menu/",{
                 
                     "client": x.client,
                     "tablefood": x.tablefood,

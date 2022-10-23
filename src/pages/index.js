@@ -10,7 +10,7 @@ export default function Home() {
   const  [newName,setNewName] = useState("")
 
   const guardarUsuario = () => {
-    axios.post("http://localhost:8000/users/",{
+    axios.post("https://drf-retaurante.onrender.com/users/",{
             "name_client": localStorage.getItem("name")
     })
     .then(res => {
