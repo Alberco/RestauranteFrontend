@@ -7,7 +7,6 @@ import Swal from "sweetalert2"
 function Home() {
 
     const router = useRouter()
-    localStorage.setItem("shopping","gaaaaaa")
     const baseData = []
     const [newData,setNewData] = useState(baseData)
 

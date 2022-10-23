@@ -9,8 +9,7 @@ function Products() {
 
     const router = useRouter()
 
-    localStorage.setItem("shopping","gaaaaaa")
-    
+
     const baseData = {
         "count": null,
         "next": null,
@@ -56,13 +55,13 @@ function Products() {
     } 
 
     const irShop = () => {
-      localStorage.setItem("shopping",JSON.stringify(newShopping))
+      localStorage.setItem("sho",JSON.stringify(newShopping))
       router.push("/home/pedido")
     }
 
 
 
-    let data = JSON.parse(localStorage.getItem("shopping"));
+    let data = JSON.parse(localStorage.getItem("sho"));
 
     const finalizarPedido = () => {
       data.map( x => {

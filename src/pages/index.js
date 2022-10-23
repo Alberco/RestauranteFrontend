@@ -8,8 +8,7 @@ export default function Home() {
 
   const router = useRouter()
   const  [newName,setNewName] = useState("")
-  localStorage.setItem("shopping","gaaaaaa")
-  
+
   const guardarUsuario = () => {
     axios.post("https://drf-retaurante.onrender.com/users/",{
             "name_client": localStorage.getItem("name")
